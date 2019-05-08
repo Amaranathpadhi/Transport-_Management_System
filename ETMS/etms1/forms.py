@@ -1,6 +1,7 @@
 from django import forms
-from .models import Userprofileinfo,Employee,Driver,Addbooking
+from .models import Userprofileinfo,Driver,Addbooking
 from django.contrib.auth.models import User
+
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     class Meta:
@@ -11,11 +12,6 @@ class UserProfileInfoForm(forms.ModelForm):
         model = Userprofileinfo
         fields = ('portfolio_site','profile_pic')
 
-class EmployeeForm(forms.ModelForm):
-    class Meta:
-        model=Employee
-        fields ="__all__"
-
 class DriverForm(forms.ModelForm):
     class Meta:
         model= Driver
@@ -23,4 +19,4 @@ class DriverForm(forms.ModelForm):
 class AddbookForm(forms.ModelForm):
     class Meta:
         model= Addbooking
-        exclude = ['emp_name']
+        fields = "__all__"

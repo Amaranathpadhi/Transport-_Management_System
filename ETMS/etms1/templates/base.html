@@ -16,10 +16,10 @@
             <li><a class="navbar-brand" href="{% url 'index' %}">ETMS</a></li>
           {# Some logic on what to display for last item#}
           {% if user.is_authenticated %}
-            <li><a class="navbar-link" href="{% url 'admin:index' %}">My Bookings</a></li>
+            <li><a class="navbar-link" href="/etms1/booking_data/">My Bookings</a></li>
             <li><a class="navbar-link" href="{% url 'etms1:addbooking' %}">Add Booking</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
-          {% else %}
+           {% else %}
 
             <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li>
             <li><a class="navbar-link" href="{% url 'etms1:register' %}">Register</a></li>

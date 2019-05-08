@@ -1,51 +1,14 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-
-   <style type = "text/css">
-	body{
-        background-color:lavender;
-		color: darkred;
-	}
-	#c1{
-		position:absolute;
-		border:3px solid red;
-		border-style:dashed;
-		top:25%;
-		left:50%;
-		height:65%;
-		width:28%;
-		padding:2%;
-	}
-	#c2{
-		color:crimson;
-		position : relative;
-		bottom: 20px;
-
-	}
-	#c3{
-		//color:crimson;
-		position : relative;
-		bottom: 20px;
-		padding-top:15px;
-	}
-	h1 {
-		font-size: 40px;
-	}
-
-	h2 {
-		font-size: 20px;
-	}
-
-	</style>
-</head>
-<body>
-    <h1><center><b>Employee Transport Management system</center></b></h1><hr/ color ="gold">
-    <div id="c1" >
-
-    <center>
+{% extends "base.html" %}
+{% block title %}
+      <title>Add Book Page</title>
+      {% endblock %}
+{% block body_block %}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+  <div class="jumbotron">
+    {% if admin.is_authenticated %}
+      <center>
+          <form method="post">
+              {% csrf_token %}    <center>
             <form id ="c2">
                 <h2>Driver Registration</h2>
                 <hr/ color ="black">
@@ -61,8 +24,7 @@
 
 	</form>
 	</center>
-    </div>
-
-
-</body>
-</html>
+   {% endif %}
+  </div>
+</div>
+{% endblock %}

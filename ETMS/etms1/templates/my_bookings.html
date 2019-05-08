@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}
+      <title>Add Book Page</title>
+      {% endblock %}
+    {% block body_block %}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+  <div class="jumbotron">
+    {% if user.is_authenticated %}
+      <h2>Hello {{ user.username }} Your Bookings</h2>
+      <hr/>
+      <center>
+
+      <table width="50%" >
+          <tr>
+              <th>ID</th>
+              <th>USER NAME</th>
+              <th>PICKUP ADDRESS</th>
+              <th>DROP ADDRESS</th>
+              <th>DATE</th>
+              <th>TIME</th>
+          </tr>
+
+          {% for obj in objs %}
+            <tr>
+		        <td>{{ obj.id }} </td>
+                <td>{{ obj.user_name }} </td>
+		        <td>{{ obj.pickup_add }} </td>
+                <td>{{ obj.drop_add }} </td>
+                <td>{{ obj.date }} </td>
+                <td>{{ obj.time }} </td>
+            </tr>
+
+          {% endfor %}
+      </table>
+      </center>
+
+        {% endif %}
+
+  </div>
+</div>
+{% endblock %}

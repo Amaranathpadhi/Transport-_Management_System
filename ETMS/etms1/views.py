@@ -6,9 +6,9 @@ from django.shortcuts import render
 # Create your views here.
 from django.http.response import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
-from .models import Userprofileinfo,Employee,Driver,Addbooking
+from .models import Driver,Addbooking
 from django.contrib.auth.decorators import login_required
-from .forms import UserForm,UserProfileInfoForm,EmployeeForm,DriverForm,AddbookForm
+from .forms import UserForm,UserProfileInfoForm,DriverForm,AddbookForm
 from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse
 from django.views.generic import TemplateView, ListView
@@ -69,17 +69,8 @@ def user_login(request):
         return render(request, 'login.html', {})
 
 
-def addemployee(request):
-    form = EmployeeForm(request.POST)
-    if form.is_valid():
-        data = form.cleaned_data
-        db_obj = Employee(name=data['name'], mobile_number=data['mobile_number'], email=data['email'],
-                          emp_id=data['emp_id'],address=data['address'],pin=data['pin'])
-        db_obj.save()
-        return HttpResponse("success")
-    return render(request,'Employee_regis.html',{'form':EmployeeForm()})
 def adddriver(request):
-    form = DriverForm(request.GET)
+    form = DriverForm(request.POST)
     if form.is_valid():
         data = form.cleaned_data
         db_obj = Driver(name=data['name'], mobile_number=data['mobile_number'], email=data['email'],
@@ -91,9 +82,11 @@ def addbooking(request):
     form = AddbookForm(request.POST)
     if form.is_valid():
         data = form.cleaned_data
-        db_obj = Addbooking( pickup_add=data['pickup_add'], drop_add=data['drop_add'],date=data['date'],time=data['time'])
+        db_obj = Addbooking(user_name=data['user_name'],pickup_add=data['pickup_add'], drop_add=data['drop_add'],date=data['date'],time=data['time'])
         db_obj.save()
         return HttpResponse("success")
     return render(request,'add_booking.html',{'form':AddbookForm()})
 
-
+def booking_data(request):
+    x = Addbooking.objects.all()
+    return render(request, 'my_bookings.html', {'objs': x})
